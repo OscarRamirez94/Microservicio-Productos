@@ -35,7 +35,6 @@ import com.example.productos.iservice.IProductoService;
 
 
 @RestController
-@RequestMapping("/api")
 public class ProductoController {
 	private final Logger log = LoggerFactory.getLogger(ProductoController.class);
 	@Autowired
@@ -47,31 +46,46 @@ public class ProductoController {
 	@Autowired
 	private Environment env;
 
-	@GetMapping("/productos")
+	@GetMapping("/listar")
 	public List<Producto> listaCliente() {
+		
 		
 		return productoService.findAll().stream().map(producto ->{
 			//producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
 			producto.setPort(port);
 			return producto;
 		}).collect(Collectors.toList());
+		
+		
 	}
 	
-	@GetMapping("/productos/{id}")
-	public ResponseEntity<?> clienteByid(@PathVariable Long id) {
+	@GetMapping("/detalle/{id}")
+	public ResponseEntity<?> clienteByid(@PathVariable Long id)  {
 		Producto producto= null;
 		Map<String, Object> response = new HashMap();
-
+		
+		/*boolean ok = false;
+		if(ok == false) {
+			System.out.println("error");
+			throw new Exception("no se pudo obtener");
+		}
+		*/
+		
 		try {
+			//Thread.sleep(2000L);
+			
 			producto = productoService.findyById(id);
 			//producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
 			producto.setPort(port);
-		} catch (DataAccessException e) {
+			
+		} catch (DataAccessException /*| InterruptedException*/ e) {
 			response.put("mensaje", "Error en la base de datos");
-			response.put("error", e.getMessage() + " : " + e.getMostSpecificCause().getMessage());
+			response.put("error", e.getMessage());
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 
 		}
+		
+
 
 		if (producto == null) {
 			response.put("mensaje", "El id : " + id + " no existe");
