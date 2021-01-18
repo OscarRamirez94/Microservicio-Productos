@@ -72,13 +72,13 @@ public class ProductoController {
 		*/
 		
 		try {
-			//Thread.sleep(2000L);
+			Thread.sleep(2000L);
 			
 			producto = productoService.findyById(id);
 			//producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
 			producto.setPort(port);
 			
-		} catch (DataAccessException /*| InterruptedException*/ e) {
+		} catch (DataAccessException | InterruptedException e) {
 			response.put("mensaje", "Error en la base de datos");
 			response.put("error", e.getMessage());
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
