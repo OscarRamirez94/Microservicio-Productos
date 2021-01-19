@@ -1,7 +1,9 @@
 package com.example.productos.iservice;
 
 import java.util.List;
-import com.example.productos.entity.Producto;
+
+import com.example.commons.models.Producto;
+
 
 public interface IProductoService {
 	

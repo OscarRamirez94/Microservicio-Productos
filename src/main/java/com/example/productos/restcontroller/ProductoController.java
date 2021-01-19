@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.productos.entity.Producto;
+import com.example.commons.models.Producto;
 import com.example.productos.iservice.IProductoService;
 
 

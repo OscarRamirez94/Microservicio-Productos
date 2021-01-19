@@ -3,13 +3,12 @@ package com.example.productos.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.commons.models.Producto;
 import com.example.productos.dao.IProductoDao;
-import com.example.productos.entity.Producto;
+
 import com.example.productos.iservice.IProductoService;
 
 @Service
